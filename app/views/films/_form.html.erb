@@ -1,4 +1,4 @@
-<%= form_with(model: film, local: true) do |form| %>
+<%= bootstrap_form_with(model: film, local: true) do |form| %>
   <% if film.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(film.errors.count, "error") %> prohibited this film from being saved:</h2>
@@ -10,33 +10,51 @@
       </ul>
     </div>
   <% end %>
+  <div class="container">
 
-  <div class="field">
-    <%= form.label :title %>
+
     <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note %>
     <%= form.text_area :note %>
-  </div>
-
-  <div class="field">
-    <%= form.label :genre_id %>
-    <%= form.text_field :genre_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :informant_id %>
-    <%= form.text_field :informant_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_watched %>
-    <%= form.date_select :last_watched %>
-  </div>
-
-  <div class="actions">
+    <div class="row text-center">
+      <div class="col-5 text-center ">
+        <%= form.collection_select :genre_id, Genre.all, :id, :name, label: "Select Genre", include_blank: "New Genre Add =>", prompt: "Select Genre"%>
+      </div>
+        <div id="addgenre" class="col-5 text-center" style="display:none;">
+          <%= form.text_field :genre, label: "Genre Name"%>
+        </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-5 text-center ">
+        <%= form.collection_select :informant_id, Informant.all, :id, :name, label: "Select Informant", include_blank: "New Informant Add =>", prompt: "Select Informant"%>
+      </div>
+        <div id="addinformant" class="col-5 text-center" style="display:none;">
+          <%= form.text_field :genre, label: "Name"%>
+        </div>
+    </div>
     <%= form.submit %>
-  </div>
 <% end %>
+</div>
+<script type="text/javascript">
+var genreElement = document.getElementById("film_genre_id");
+var informantElement = document.getElementById("film_informant_id");
+genreElement.addEventListener("change", function() {
+  if( genreElement.value == "")
+  {
+    document.getElementById("addgenre").style.display = "block";
+  }
+  else
+  {
+    document.getElementById("addgenre").style.display = "none";
+  }
+});
+informantElement.addEventListener("change", function() {
+  if( informantElement.value == "")
+  {
+    document.getElementById("addinformant").style.display = "block";
+  }
+  else
+  {
+    document.getElementById("addinformant").style.display = "none";
+  }
+});
+</script>

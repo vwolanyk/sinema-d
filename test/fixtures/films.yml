@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  note: MyText
+  genre: one
+  informant: one
+  last_watched: 2019-04-27
+
+two:
+  title: MyString
+  note: MyText
+  genre: two
+  informant: two
+  last_watched: 2019-04-27

@@ -1,0 +1,2 @@
+class Informant < Tag
+end

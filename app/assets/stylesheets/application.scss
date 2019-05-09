@@ -13,3 +13,15 @@
  */
  @import "bootstrap";
  @import "rails_bootstrap_forms";
+
+ .jumbotron{
+    background-color: teal;
+    background-image: url("film.png");
+    color: white;
+ }
+ // .jumbotron {
+ //   h1 {
+ //     margin-top: 4rem;
+ //     padding-top: 2rem;
+ //   }
+ // }

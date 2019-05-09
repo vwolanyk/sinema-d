@@ -65,3 +65,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap'
 gem 'jquery-rails'
 gem "bootstrap_form", ">= 4.2.0"
+
+gem 'pry', '~> 0.12.2'

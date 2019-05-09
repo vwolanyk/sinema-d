@@ -20,7 +20,7 @@
         <%= form.collection_select :genre_id, Genre.all, :id, :name, label: "Select Genre", include_blank: "New Genre Add =>", prompt: "Select Genre"%>
       </div>
         <div id="addgenre" class="col-5 text-center" style="display:none;">
-          <%= form.text_field :genre, label: "Genre Name"%>
+          <%= form.text_field :new_genre_name, label: "Genre Name"%>
         </div>
     </div>
     <div class="row text-center">
@@ -28,7 +28,7 @@
         <%= form.collection_select :informant_id, Informant.all, :id, :name, label: "Select Informant", include_blank: "New Informant Add =>", prompt: "Select Informant"%>
       </div>
         <div id="addinformant" class="col-5 text-center" style="display:none;">
-          <%= form.text_field :genre, label: "Name"%>
+          <%= form.text_field :new_informant_name, label: "Informer Name"%>
         </div>
     </div>
     <%= form.submit %>

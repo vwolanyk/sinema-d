@@ -14,11 +14,16 @@
  @import "bootstrap";
  @import "rails_bootstrap_forms";
 
- .jumbotron{
+ html {
+   width: 100%;
+ }
+ body {
     background-color: teal;
     background-image: url("film.png");
-    color: white;
+    background-repeat: repeat-y;
+    background-size: 100%;
  }
+
  // .jumbotron {
  //   h1 {
  //     margin-top: 4rem;

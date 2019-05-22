@@ -29,6 +29,15 @@
   <%= @film.last_watched %>
 </p>
 
+<p>
+  Categories:
+  <ul>
+    <% @film.categories.each do |cat| %>
+    <li><%= cat.name %></li>
+    <% end %>
+  </ul>
+<p>
+
 <%= link_to 'Edit', edit_film_path(@film) %> |
 <%= link_to 'Back', films_path %>
 

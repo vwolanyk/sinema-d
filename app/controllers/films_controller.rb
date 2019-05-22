@@ -4,7 +4,7 @@ class FilmsController < ApplicationController
   # GET /films
   # GET /films.json
   def index
-    @films = Film.all
+    @films = Film.all.order(created_at: :desc)
   end
 
   # GET /films/1
@@ -25,13 +25,12 @@ class FilmsController < ApplicationController
   # POST /films.json
   def create
     @film = Film.new(create_params)
-    binding.pry;0
     create_new_genre if (!@film.genre && !new_genre_params.blank?)
     create_new_informant if (!@film.informant && !new_informant_params.blank?)
 
     respond_to do |format|
       if @film.save
-        format.html { redirect_to @film, notice: 'Film was successfully created.' }
+        format.html { redirect_to "/films", notice: 'Film was successfully created.' }
         format.json { render :show, status: :created, location: @film }
       else
         format.html { render :new }
@@ -83,7 +82,9 @@ class FilmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def create_params
-      params.require(:film).permit(%i[title note informant_id genre_id])
+      params.require(:film)
+            .permit(:title, :note, :informant_id, :genre_id)
+            .merge(film_categories_params)
     end
 
     def update_params
@@ -94,8 +95,25 @@ class FilmsController < ApplicationController
     def new_genre_params
        { name: params.require(:film).permit(:new_genre_name)[:new_genre_name] }
     end
+
     def new_informant_params
       { name: params.require(:film)
                     .permit(:new_informant_name)[:new_informant_name] }
+    end
+
+    def new_category_name_params
+      params.require(:film).permit(:new_category_name)[:new_category_name]
+    end
+
+    def create_new_category
+      return if new_category_name_params.blank?
+      Category.create!(name: new_category_name_params)
+    end
+
+    def film_categories_params
+      category_ids = params.require(:film)
+                           .permit(film_categories:[])[:film_categories] <<
+                    create_new_category&.id
+      { categories: Category.where(id: category_ids) }
     end
 end

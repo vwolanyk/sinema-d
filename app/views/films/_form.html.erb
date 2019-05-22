@@ -31,6 +31,8 @@
           <%= form.text_field :new_informant_name, label: "Informer Name"%>
         </div>
     </div>
+    <%= form.collection_check_boxes :film_categories, Category.all, :id, :name, inline: true, include_blank: false, include_hidden: false %>
+    <%= form.text_field :new_category_name, label: "Category Name", include_blank: false%>
     <%= form.submit %>
 <% end %>
 </div>

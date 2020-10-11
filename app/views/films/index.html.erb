@@ -9,16 +9,22 @@
     <div class="card" style="opacity:.8; margin-bottom: 1em;">
       <div class="card-header">
         <h5><%= film.title %>
+          <%= form_tag(watched_path(film), :method => "post") do %>
+
           <% if film.last_watched.nil? %>
-            <% form_for film, :method => :put do |f| %>
-            <%= f.hidden_field :last_watched, :value => Date.today %>
-            <%= button_tag type: "submit", class: "button" do %>
+          <span style="float: right">
+            <%= button_tag type: "submit", class: "btn btn-lg" do %>
             <i class="fa fa-eye-slash" style="color:red;float: right;"></i>
             <% end %>
-            <% end %>
+            </span>
               <%else%>
+              <span style="float: right">
+              <%= button_tag type: "submit", class: "btn btn-md" do %>
             <i class="fa fa-eye" style="color:blue;float: right;"><span style="padding-left: .25em;"><%= film.last_watched.strftime("%B %Y") %></span></i>
+            <% end %>
+            </span>
               <%end%>
+            <% end %>
             </h5>
               <span class="badge badge-info"><%= film.genre.name %></span>
               <% film.categories.each do |cat| %>
@@ -39,7 +45,7 @@
     </div>
   </div>
 
-    <% end %>
+  <% end %>
 </div>
 
 

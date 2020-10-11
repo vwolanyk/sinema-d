@@ -7,6 +7,10 @@ class FilmsController < ApplicationController
     @films = Film.all.order(created_at: :desc)
   end
 
+  def imbd_search
+    @search_results = "http://www.omdbapi.com/?t=holy+motors&r=xml"
+  end
+
   # GET /films/1
   # GET /films/1.json
   def show
